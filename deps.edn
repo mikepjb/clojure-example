@@ -4,6 +4,7 @@
         com.bhauman/figwheel-main {:mvn/version "0.2.12"}
         metosin/reitit {:mvn/version "0.5.5"}
         sail/sail {:mvn/version "RELEASE"}
+        cljs-http/cljs-http {:mvn/version "0.1.46"}
         reagent/reagent {:mvn/version "1.0.0"}}
  ;; setup some development paths
  :paths ["src/clj" "src/cljc" "src/cljs" "target" "resources"]

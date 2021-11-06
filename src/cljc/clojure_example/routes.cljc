@@ -9,7 +9,7 @@
 
 #?(:clj
    (defn test-data [_]
-     (-> {:status 200 :body "{\"hello\": \"test data\"}"}
+     (-> {:status 200 :body (str "{\"hello\": \"test data\", \"random-number\": \"" (rand-int 30)  "\"}")}
          (content-type "text/json"))))
 
 (def routes

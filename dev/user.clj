@@ -39,7 +39,7 @@
     {:id "dev"
      :options {:output-to "target/public/cljs-out/main.js"
                :main 'clojure-example.core}
-     :config {:watch-dirs ["src"]
+     :config {:watch-dirs ["src/cljs" "src/cljc"]
               :open-url false
               :mode :serve}})
     )
@@ -47,21 +47,27 @@
 (defn stop-figwheel![]
   (figwheel/stop-all))
 
-(defn start []
+(defn start-server []
   (reset! server (app/-main)))
 
-(defn stop []
+(defn stop-server []
   (when @server
     (.stop @server)
     (reset! server nil)))
 
 (defn dev []
   (start-figwheel!)
-  (start))
+  (start-server))
 
-(defn dev-stop []
+(def start dev)
+
+(defn stop []
   (stop-figwheel!)
-  (stop))
+  (stop-server))
+
+(defn reset []
+  (stop)
+  (start))
 
 (defn repl []
   (figwheel/cljs-repl "dev"))
