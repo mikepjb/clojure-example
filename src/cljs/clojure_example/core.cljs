@@ -8,7 +8,7 @@
             [cljs.core.async :refer [<!]]
             [clojure-example.routes :as routes]))
 
-(println "hello there!")
+(println "Starting clojure example")
 
 (def router
   (reitit/router routes/routes))
@@ -20,14 +20,16 @@
   (fn []
     (go
       (let [response (<! (http/get "/api/test" {:with-credentials? false}))]
-        (prn "got /api/test response")
-        (prn (:status response))
-        (prn (:body response))
         (swap! state assoc :test (:body response)))))
   3000)
 
 (defn app [state]
-  [:div
-   "Hello clojure-example, my state is " (str @state)])
+  [:div.flex.flex-col.h-full.bg-gray-100.p-2
+   [:div.font-semibold "Hello clojure-example"]
+   [:div "my state is:"]
+   [:ul
+    (for [[k v] @state]
+      ^{:key k}
+      [:li (name k) " :: " v])]])
 
 (rdom/render [app state] (gdom/getElement "app"))

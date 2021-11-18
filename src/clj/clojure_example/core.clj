@@ -26,19 +26,3 @@
     (wrap-defaults app site-defaults)
     {:port 8080
      :join? false}))
-
-;; (defn handler [req]
-;;   (or
-;;     (when (= "/" (:uri req))
-;;       (-> (resource-response "index.html" {:root "public"})
-;;           (content-type "text/html")))
-;;     {:status 404
-;;      :headers {"Content-Type" "text/html"}
-;;      :body "404 Not Found"}))
-
-;; (defn -main
-;;   [& args]
-;;   (run-jetty
-;;     (wrap-defaults handler site-defaults)
-;;     {:port 8080
-;;      :join? false}))
